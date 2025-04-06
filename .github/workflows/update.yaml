@@ -16,7 +16,7 @@ jobs:
         with:
           python-version: "3.x"
 
-      # make sure meson version exists
+      # make sure dprint-py pypi version exists
       - run: pip install .
 
       - run: echo "DPRINT_VERSION=v$(python ./scripts/get_current_ver.py)" >> $GITHUB_ENV
@@ -35,4 +35,4 @@ jobs:
         with:
           tag: "${{ env.DPRINT_VERSION }}"
           tag_exists_error: false
-          message: "meson ${{ env.DPRINT_VERSION }}"
+          message: "dprint-py ${{ env.DPRINT_VERSION }}"

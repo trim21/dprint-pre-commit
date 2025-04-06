@@ -15,8 +15,8 @@ Add this to your `.pre-commit-config.yaml`:
   rev: "" # Use the sha / tag you want to point at
   hooks:
     - id: dprint
-      # must add types to match files you want to format
-      types:
+      # must add types_or to match files you want to format
+      types_or:
         - javascript
         - ts
         - yaml

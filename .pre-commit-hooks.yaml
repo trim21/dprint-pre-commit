@@ -2,5 +2,3 @@
   name: dprint
   entry: dprint fmt
   language: python
-  additional_dependencies:
-    - dprint-py==0.49.1

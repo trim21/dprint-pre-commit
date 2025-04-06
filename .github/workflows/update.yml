@@ -1,0 +1,38 @@
+name: update
+on:
+  push:
+    branches: [master]
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    name: update
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      # make sure meson version exists
+      - run: pip install .
+
+      - run: echo "DPRINT_VERSION=v$(python ./scripts/get_current_ver.py)" >> $GITHUB_ENV
+
+      - run: echo get tag ${{ env.DPRINT_VERSION }}
+
+      - uses: bbonkr/git-tag-check-action@v1
+        id: git_tag_check
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tag: "${{ env.DPRINT_VERSION }}"
+
+      - uses: rickstaa/action-create-tag@v1
+        if: ${{ steps.git_tag_check.outputs.tag == '' }}
+        id: "tag_create"
+        with:
+          tag: "${{ env.DPRINT_VERSION }}"
+          tag_exists_error: false
+          message: "meson ${{ env.DPRINT_VERSION }}"

@@ -22,3 +22,22 @@ Add this to your `.pre-commit-config.yaml`:
         - yaml
         - toml
 ```
+
+## Gotcha!
+
+dprint doesn't take args as file path, but actually as glob pattern.
+
+So if your file path contains any `[` or `]`, it will nevery get formatted
+
+The solution would be letting dprint format all files:
+
+```yaml
+- repo: https://github.com/trim21/dprint-pre-commit
+  rev: "" # Use the sha / tag you want to point at
+  hooks:
+    - id: dprint
+      pass_filenames: false
+      always_run: true
+```
+
+If your project contains git submodules, don't forget to exclude then in `dprint.json`

@@ -25,9 +25,11 @@ Add this to your `.pre-commit-config.yaml`:
 
 ## Gotcha!
 
-dprint doesn't take args as file path, but actually as glob pattern.
+dprint doesn't take args as file path, but actually as glob pattern. see [dprint#552](https://github.com/dprint/dprint/issues/552) for more details.
 
-So if your file path contains any `[` or `]`, it will nevery get formatted
+So if your file path contains any `[` or `]`,
+for example `./src/routes/[id].svelte`,
+it will nevery get formatted
 
 The solution would be letting dprint format all files:
 

@@ -42,4 +42,4 @@ The solution would be letting dprint format all files:
       always_run: true
 ```
 
-If your project contains git submodules, don't forget to exclude then in `dprint.json`
+If your project contains git submodules, don't forget to exclude them in `dprint.json`

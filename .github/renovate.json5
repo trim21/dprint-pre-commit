@@ -1,7 +1,7 @@
 {
-  extends: [
-    "config:recommended",
-    ":dependencyDashboard"
-  ],
-  automerge: true
+  extends: ["config:recommended", ":dependencyDashboard"],
+  "poetry": {
+    "enabled": false,
+  },
+  automerge: true,
 }

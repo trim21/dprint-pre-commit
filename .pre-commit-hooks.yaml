@@ -1,4 +1,9 @@
 - id: dprint
   name: dprint
-  entry: dprint fmt
+  # Files might be excluded by rules in the `dprint.json` config file, don't fail in that case.
+  entry: dprint fmt --allow-no-files
+  # dprint already does parallelization internally
+  # See https://dprint.dev/setup/#limiting-parallelism
+  require_serial: true
+  types: [text]
   language: python

@@ -16,24 +16,3 @@ Add this to your `.pre-commit-config.yaml`:
   hooks:
     - id: dprint
 ```
-
-## Gotcha!
-
-dprint doesn't take args as file path, but actually as glob pattern. see [dprint#552](https://github.com/dprint/dprint/issues/552) for more details.
-
-So if your file path contains any `[` or `]`,
-for example `./src/routes/[id].svelte`,
-it will nevery get formatted
-
-The solution would be letting dprint format all files:
-
-```yaml
-- repo: https://github.com/trim21/dprint-pre-commit
-  rev: "" # Use the sha / tag you want to point at
-  hooks:
-    - id: dprint
-      pass_filenames: false
-      always_run: true
-```
-
-If your project contains git submodules, don't forget to exclude them in `dprint.json`
